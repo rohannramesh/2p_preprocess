@@ -1,6 +1,6 @@
 # 2p_preprocess
 
-This is a Pre-Processing package for 2-photon imaging data sets. Here, I will describe briefly the approach taken at each step, the parameters that should be set depending on your particular imaging setup, and decisions that need to be made in terms of how you want to preprocess your data. Within the PPPack (Pre-Process Package) there are three main folders: the PreProcess2P class, the helper functions package (hf), the constrained non-negative matrix factorization (NMF) package, and the PCA/ICA package. These last two folders contain the functions and pre-trained convolutional neural networks needed to identify putative ROIs and for ROI selection
+This is a Pre-Processing package for 2-photon imaging data sets. Here, I will describe briefly the approach taken at each step, the parameters that should be set depending on your particular imaging setup, and decisions that need to be made in terms of how you want to preprocess your data. Within the PPPack (Pre-Process Package) there are three main folders: the PreProcess2P class, the helper functions package (hf), the constrained non-negative matrix factorization (NMF) package, and the PCA/ICA package. These last two folders contain the functions and pre-trained convolutional neural networks needed to identify putative regions of interest (ROIs) and for ROI selection
 
 
 ## Setup, Prerequisites, and Installing
@@ -20,7 +20,7 @@ For deconvolution, we are using an algorithm that requires the CVX library, down
 
 ### Preprocessing pipeline
 
-PreProcessing Steps (for details see each cell below) - to run look at Run_PreProcess_Pipeline.m
+PreProcessing Steps - to run look at Run_PreProcess_Pipeline.m
 Additional details also included about each step included in this script
 1. Define your PreProcessing object
 2. Save object
@@ -34,7 +34,7 @@ Additional details also included about each step included in this script
 
 ## Imaging Protocol and File Structure
 
-Each 2P imaging session can contain multiple imaging runs. In the Andermann lab we collect ~4 30 min imaging runs at a single plane. A separate object should be created for each new plane imaged. Within a given imaging plane there will be multiple active neurons. The goal of this preprocessing pipeline is to extract the activity of these neurons for all imaging runs on a given day. Our lab uses the relatively common Scanbox imaging setup and so within the folder for an imaging run there will be the following files:
+Each 2P imaging session can contain multiple imaging runs. In the Andermann lab we collect ~4 30 min imaging runs at a single plane. A separate object should be created for each new plane imaged. Within a given imaging plane there will be multiple active neurons. The goal of this preprocessing pipeline is to register all imaging runs to a common target with subpixel resolution, to identify those neurons that are active during an imaging run, and to extract the activity of these neurons for all imaging runs on a given day. Our lab uses the relatively common Scanbox imaging setup and so within the folder for an imaging run there will be the following files:
 1. .sbx - raw data from that imaging run (still have to make flexible
           for tiff setup)
 2. .ephys - nidaq data if aligning animal behavior to 2P frames
@@ -46,10 +46,10 @@ The pre-processing files will build the following files (load each filetype as a
 1. .align - file containing the subpixel shifts for each plane to 
             register each run to a common target
 2. .f2p and .TrialVar - file for information about stimulus and behavior on each frame
-3. .ica or .nmf - output from PCA/ICA or CNMF ROI identification algorithm respecttively
+3. .ica or .nmf - output from PCA/ICA or CNMF ROI identification algorithm respectively
 4. .icamasks or .nmfmasks - output after ROI selection process (GUI or CNN)
 5. .npilmasks - masks for each neuropil mask for each ROI identified
-6. .signalsica or .signalsnmf - signal variable containing the extracted timecourses
+6. .signalsica or .signalsnmf - signals variable containing the extracted timecourses
 
 Folder organization we used:
 All of the data for each run was saved in a single folder, with multiple folders for multiple runs for each day.
@@ -60,4 +60,4 @@ The important considerations are Base\MouseName\Date\Runs_to_analyze We define b
 
 ## Authors
 
-* Rohan Ramesh - PhD. student Andermann lab
+* Rohan Ramesh - PhD. student, Andermann lab
