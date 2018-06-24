@@ -26,7 +26,7 @@ Additional details also included about each step included in this script
 2. Save object
 3. Register data
 4. Build frame metadata and trial information - (optional) if using MonkeyLogic behavioral training setup (Asaad and Esakandar, 2008)
-5. ROI identification - PCA/ICA (Mukamel and Schniter, 2009) or CNMF (Pnevmatikakis et al., 2016)
+5. ROI identification - PCA/ICA (Mukamel and Schnitzer, 2009) or CNMF (Pnevmatikakis et al., 2016)
 6. ROI extraction - pre-trained convolutional neural network or ROI selection GUI (for semi-automated manual selection)
 7. Signal fluorescence trace extraction (neuropil correction and dFF calculation)
 8. Run Generalized Linear Model (optional)
