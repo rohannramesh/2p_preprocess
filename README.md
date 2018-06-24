@@ -55,7 +55,7 @@ Folder organization we used:
 All of the data for each run was saved in a single folder, with multiple folders for multiple runs for each day.
 An example path to a single run folder:
 'S:\twophoton_data\2photon\scan\OA27\170524_OA27\170524_OA27_run4' 
-The important considerations are Base\MouseName\Date\Runs_to_analyze We define base in PPPack.hf.sbxScanBase and everything else in PPPack.hf.sbxDir From personal experience we recommend this structure, but feel free to adjust accordingly.
+The important considerations are Base\MouseName\Date\Runs_to_analyze. We define base in PPPack.hf.sbxScanBase and everything else in PPPack.hf.sbxDir From personal experience we recommend this structure, but feel free to adjust accordingly.
 
 
 ## Authors
