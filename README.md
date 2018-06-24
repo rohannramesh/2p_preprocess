@@ -20,7 +20,7 @@ For deconvolution, we are using an algorithm that requires the CVX library, down
 
 ### Preprocessing pipeline
 
-PreProcessing Steps - to run look at Run_PreProcess_Pipeline.m
+PreProcessing Steps - to run look at Run_PreProcess_Pipeline.m.
 Additional details also included about each step included in this script
 1. Define your PreProcessing object
 2. Save object
@@ -54,7 +54,7 @@ The pre-processing files will build the following files (load each filetype as a
 Folder organization we used:
 All of the data for each run was saved in a single folder, with multiple folders for multiple runs for each day.
 An example path to a single run folder:
-'S:\twophoton_data\2photon\scan\OA27\170524_OA27\170524_OA27_run4' 
+'S:\twophoton_data\2photon\scan\OA27\170524_OA27\170524_OA27_run4.' 
 The important considerations are Base\MouseName\Date\Runs_to_analyze. We define base in PPPack.hf.sbxScanBase and everything else in PPPack.hf.sbxDir From personal experience we recommend this structure, but feel free to adjust accordingly.
 
 
