@@ -1,0 +1,31 @@
+function base = sbxScanbase(server)
+%SBXSCANBASE Hard codes directories
+
+    % Set base path depending on server
+    if nargin < 1 || isempty(server) || strcmpi(PPPack.hf.hostname, server)
+        if strcmp(PPPack.hf.hostname, 'Megatron')
+            base = 'D:\twophoton_data\2photon\scan\';
+        elseif strcmp(PPPack.hf.hostname, 'Atlas')
+            base = 'E:\twophoton_data\2photon\raw\';
+        elseif strcmp(PPPack.hf.hostname, 'BeastMode')
+            base = 'S:\twophoton_data\2photon\scan\';
+        elseif strcmp(PPPack.hf.hostname, 'Sweetness')
+            base = 'D:\2p_data\scan\';
+        elseif strcmpi(PPPack.hf.hostname, 'santiago')
+            base = 'D:\2p_data\scan\';
+        end
+    else
+        if strcmpi(server, 'santiago')
+            base = '\\santiago\2p_data\scan\';
+        elseif strcmpi(server, 'sweetness')
+            base = '\\sweetness\2p_data\scan\';
+        elseif strcmpi(server, 'megatron')
+            base = '\\megatron\2photon\scan\';
+        elseif strcmpi(server, 'storage') && strcmp(hostname, 'Megatron')
+            base = 'E:\scan\';
+        elseif strcmpi(server, 'storage')
+            base = '\\megatron\E\scan\';
+        end
+    end
+end
+
