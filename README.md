@@ -57,6 +57,9 @@ An example path to a single run folder:
 'S:\twophoton_data\2photon\scan\OA27\170524_OA27\170524_OA27_run4.' 
 The important considerations are Base\MouseName\Date\Runs_to_analyze. We define base in PPPack.hf.sbxScanBase and everything else in PPPack.hf.sbxDir From personal experience we recommend this structure, but feel free to adjust accordingly.
 
+
+### Example pre-processing data:
+
 ## Image registration
 
 Subpixel registration will align each frame acquired to a common target. See a mean image of 500 frames before and after registration.
