@@ -61,24 +61,24 @@ The important considerations are Base\MouseName\Date\Runs_to_analyze. We define 
 
 Subpixel registration will align each frame acquired to a common target. See a mean image of 500 frames before and after registration.
 
-![alt text](images/Unregistered.png)
-![alt text](images/Registered.png)
+![alt text](+PPPack/images/Unregistered.png)
+![alt text](+PPPack/images/Registered.png)
 
 ## ROI selection
 
 Putative neurons or axons can be selected either manually using a custom GUI:
 
-![alt text](images/ROI_Selection_GUI.png)
+![alt text](+PPPack/images/ROI_Selection_GUI.png)
 
 or automatically selected using a pre-trained convolutional neural network, which accounts for the weights identified using either the PCA/ICA or CNMF algorithms and the timecourse of putative regions-of-interest (ROIs). See architecture below:
 
-![alt text](images/CNN_CNMF_architecture.png)
+![alt text](+PPPack/images/CNN_CNMF_architecture.png)
 
 ## GLM
 
 Generalized Linear Model to examine neural activity:
 
-![alt text](images/GLM_mini@4x.png)
+![alt text](+PPPack/images/GLM_mini@4x.png)
 
 
 ## Authors
