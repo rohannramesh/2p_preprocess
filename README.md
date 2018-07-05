@@ -62,7 +62,7 @@ The important considerations are Base\MouseName\Date\Runs_to_analyze. We define 
 
 ### Image registration
 
-Subpixel registration will align each frame acquired to a common target. See a mean image of 500 frames before and after registration.
+Subpixel registration will align each frame acquired to a common target. See a mean image of 500 frames before and after registration. The first image is blurry because the frames are not registered, but following registration we can resolve many more neurons:
 
 ![alt text](+PPPack/images/Unregistered.png)
 ![alt text](+PPPack/images/Registered.png)
