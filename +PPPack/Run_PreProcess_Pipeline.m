@@ -122,7 +122,7 @@
 % or the default settings and can be passed in to create the object as
 % follows: PPPack.PreProcess2P('RR1','170524',2:4,PreProcessOptions)
 
-myObj = PPPack.PreProcess2P('MouseName','Date',2:4)
+myObj = PPPack.PreProcess2P('MouseName','Date',Runs_to_use)
 
 
 %% Save object.
