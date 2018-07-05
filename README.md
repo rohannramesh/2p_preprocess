@@ -70,7 +70,7 @@ Putative neurons or axons can be selected either manually using a custom GUI:
 
 ![alt text](+PPPack/images/ROI_Selection_GUI.png)
 
-or automatically selected using a pre-trained convolutional neural network, which accounts for the weights identified using either the PCA/ICA or CNMF algorithms and the timecourse of putative regions-of-interest (ROIs). See architecture below:
+Or automatically select using a pre-trained convolutional neural network, which accounts for the weights identified using either the PCA/ICA or CNMF algorithms and the timecourse of putative regions-of-interest (ROIs). See architecture below:
 
 ![alt text](+PPPack/images/CNN_CNMF_architecture.png)
 
