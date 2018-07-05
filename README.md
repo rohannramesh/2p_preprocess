@@ -78,7 +78,7 @@ Or automatically select using a pre-trained convolutional neural network, which 
 
 Generalized Linear Model to examine neural activity:
 
-![alt text](+PPPack/images/GLM_mini@4x.png)
+![alt text](+PPPack/images/GLM_mini.png)
 
 
 ## Authors
