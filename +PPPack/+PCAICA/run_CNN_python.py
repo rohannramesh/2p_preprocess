@@ -18,7 +18,7 @@ Folder_path = str(sys.argv[2]) #"ROI_images"
 model = load_model(CNN_path1)
 # model.summary()
 gen = ImageDataGenerator(featurewise_center=True, featurewise_std_normalization=True)
-newvalid_path = Folder_path
+newvalid_path = Folder_path 
 im_size = [20, 20]
 test_batch = gen.flow_from_directory(newvalid_path, target_size=(im_size[0], im_size[1]),
                                      batch_size=10000,

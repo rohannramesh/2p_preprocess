@@ -77,7 +77,8 @@ classdef PreProcess2P < handle
                 end
             end
             % now have to build the directories
-            obj.Dirs = PPPack.hf.sbxDir(obj.MouseNames,obj.Dates,obj.Runs_to_use,obj.Target_run);
+            obj.Dirs = PPPack.hf.sbxDir(obj.MouseNames,obj.Dates,obj.Runs_to_use,...
+                obj.Target_run,obj.PreProcessingParameters.server);
         end
          
     end
