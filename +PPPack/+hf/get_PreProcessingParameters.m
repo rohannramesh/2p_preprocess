@@ -16,6 +16,7 @@ if strcmp(username,'rramesh1')
     defaults.Cell_Width                   = 2.5; % default half width
     defaults.Patch_Size                   = [30, 30]; % default patch size
     defaults.start_time                   = -1; % time to start analysis - -1 means immediately
+    defaults.server                       = PPPack.hf.hostname; % server name
     
     
 elseif strcmp(username,'cburgess')
@@ -32,6 +33,7 @@ elseif strcmp(username,'cburgess')
     defaults.Cell_Width                   = 2.5; % default half width
     defaults.Patch_Size                   = [30, 30]; % default patch size    
     defaults.start_time                   = -1; % time to start analysis - -1 means immediately
+    defaults.server                       = PPPack.hf.hostname; % server name
     
 elseif strcmp(username,'kmcguir2') || strcmp(username,'kmcguire')
     defaults.rig                          = 'Hutch';
@@ -47,6 +49,7 @@ elseif strcmp(username,'kmcguir2') || strcmp(username,'kmcguire')
     defaults.Cell_Width                   = 2.5; % default half width
     defaults.Patch_Size                   = [30, 30]; % default patch size    
     defaults.start_time                   = -1; % time to start analysis - -1 means immediately
+    defaults.server                       = PPPack.hf.hostname; % server name
     
 else %%%%%%% FOR GENERAL USERS
     defaults.rig                          = 'Starsky';
@@ -62,6 +65,7 @@ else %%%%%%% FOR GENERAL USERS
     defaults.Cell_Width                   = 2.5; % default half width
     defaults.Patch_Size                   = [30, 30]; % default patch size    
     defaults.start_time                   = -1; % time to start analysis - -1 means immediately
+    defaults.server                       = PPPack.hf.hostname; % server name
 end
 
 % first lets set our variable equivalent to the default and then replace
