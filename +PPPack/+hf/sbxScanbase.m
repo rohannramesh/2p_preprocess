@@ -25,7 +25,26 @@ function base = sbxScanbase(server)
             base = 'E:\scan\';
         elseif strcmpi(server, 'storage')
             base = '\\megatron\E\scan\';
+        elseif strcmpi(server, 'Anastasia')
+            base = get_anastasia_pathname(PPPack.hf.username);
         end
     end
 end
+
+function base = get_anastasia_pathname(curr_username)
+    % to get the base directory for anastasia which is organized
+    % differently
+    anastasia_base = '\\ANASTASIA\data\2p\';
+    if strcmpi(curr_username,'kmcguir2') || strcmpi(curr_username,'kmcguire')
+        curr_name = 'kelly\';
+    elseif strcmpi(curr_username,'cburgess')
+        curr_name = 'kelly\';
+    elseif strcmpi(curr_username,'rramesh1') || strcmpi(curr_username,'rramesh')
+        curr_name = 'kelly\';
+    elseif strcmpi(curr_username,'cburgess')
+        curr_name = 'kelly\';
+    end
+    base = [anastasia_base curr_name];
+end
+
 
