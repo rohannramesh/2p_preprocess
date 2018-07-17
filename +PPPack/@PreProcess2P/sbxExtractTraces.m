@@ -48,10 +48,10 @@ for curr_run = 1:nRuns
     end
     
     % extract traces
-    [sig,signals] = PPPack.hf.sbxGetRawTraces(obj,dirs,premasks)
+    [sig,signals] = PPPack.hf.sbxGetRawTraces(obj,dirs,premasks);
 
     % calculate dFF
-    signals = PPPack.hf.sbxDFFTraces(obj,signals,frame_2p_metadata)
+    signals = PPPack.hf.sbxDFFTraces(obj,signals,frame_2p_metadata);
     
     % try doing deconvolution
     try signals = PPPack.hf.deconvolveRemovingNANRows(signals);
