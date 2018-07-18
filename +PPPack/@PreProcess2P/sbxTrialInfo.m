@@ -53,7 +53,7 @@ for curr_run = 1:nRuns
     if ~isempty(dirs.quad)
         TMP = load(dirs.quad);
         [mouse,date,run] = PPPack.hf.get_mouse_day_run_info_from_dirs(dirs);
-        curr_run_speed = PPPack.hf.sbxSpeed(mouse,date,run);
+        curr_run_speed = PPPack.hf.sbxSpeed(mouse,date,run,obj.PreProcessingParameters.server);
         stim.RunningSpeed = curr_run_speed(1:length(frame_2p_metadata.contrast));
     end
     if ~isempty(dirs.eye_processed)
