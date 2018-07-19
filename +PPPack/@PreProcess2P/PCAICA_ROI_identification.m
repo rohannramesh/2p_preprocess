@@ -47,7 +47,7 @@ save([curr_dir.sbx_name '.ica'], 'premasks','-v7.3');
 
 % preprocess for javascript
 [mouse,date,run] = PPPack.hf.get_mouse_day_run_info_from_dirs(curr_dir);
-PPPack.hf.processForJavascript(mouse,date,run);
+PPPack.hf.processForJavascript(mouse,date,run,[],[],obj.PreProcessingParameters.server);
 
 % update log file
 obj.update_log_file('PCAICA_ROI_identification');
