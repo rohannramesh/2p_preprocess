@@ -118,8 +118,8 @@ end
 % This sets up the initial plot - do when we are invisible
 % so window can get raised using ROI_selection_gui_PCAICA.
 updateICAplots(handles, 1, 0);
-set(handles.pushbutton_commit, 'Enable', 'off');
-set(handles.pushbutton_remove_roi, 'Enable', 'off');
+% set(handles.pushbutton_commit, 'Enable', 'off');
+% set(handles.pushbutton_remove_roi, 'Enable', 'off');
 
 % --- Outputs from this function are returned to the command line.
 function varargout = ROI_selection_gui_PCAICA_OutputFcn(hObject, eventdata, handles)
