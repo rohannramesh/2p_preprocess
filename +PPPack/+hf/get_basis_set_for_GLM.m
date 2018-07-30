@@ -1,7 +1,7 @@
-function All_Basis_Sets = get_basis_set_for_GLM(Dirs, variables_to_consider, task_variables)
+function All_Basis_Sets = get_basis_set_for_GLM(Dirs, variables_to_consider, task_variables, ds_val)
 
 % gaussian to convolved for each basis set
-w2 = gausswin(20); % std of about 1 sec if ds_val = 3 % used to be 15
+w2 = gausswin(15); % std of about 1 sec if ds_val = 3 % used to be 15
 w2 = w2./sum(w2);
 
 % load in the frame_2p_metadata and the TrialVariable
@@ -11,8 +11,8 @@ framerate = frame_2p_metadata.meta.framerate_2p;
 % this function defines the time pre and post all of the task variables to
 % extend the basis functions
 prepost_time_windows_taskvar = get_prepost_time_windows(variables_to_consider);
-downsampling = 1;
-nFrames_per_gauss = 12;
+% downsampling = 1;
+nFrames_per_gauss = floor(ds_val*1.5);
 
 % iterate through each run and get all of the variables we care about
 All_Basis_Sets = [];
@@ -23,7 +23,7 @@ for i = 1:length(variables_to_consider)
     
     % get the basis set for that variable
     Curr_Basis_Set = build_basis_set(vec,prepost_time_windows_taskvar(i,:),framerate,...
-        downsampling,nFrames_per_gauss,curr_task_variable,w2);
+        ds_val,nFrames_per_gauss,curr_task_variable,w2);
     
     % concatenate
     All_Basis_Sets = [All_Basis_Sets; Curr_Basis_Set'];

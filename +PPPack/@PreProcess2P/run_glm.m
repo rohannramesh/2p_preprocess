@@ -28,10 +28,12 @@ variables_to_consider = {...
     'running',...
     }
 
+% variables to input
 do_bootstrap_test = 0;
+ds_val = 3; % how many frames to downsample
     
 % lets get the task variables for all runs
-task_var = PPPack.hf.get_task_variables_for_GLM(obj.Dirs, variables_to_consider);
+task_var = PPPack.hf.get_task_variables_for_GLM(obj.Dirs, variables_to_consider, ds_val);
 
 % lets get the signals file to get the neural activity
 nRuns = length(obj.Dirs.runs);
@@ -51,17 +53,21 @@ for curr_run = 1:nRuns
     
     % number of ROIs
     nROIs = length(signals.timecourse);
-    run_tc = nan(nROIs-1,length(signals.timecourse(1).dff));
+    run_tc = nan(nROIs-1,round(length(signals.timecourse(1).dff)./ds_val));
     for curr_ROI = 1:nROIs-1
         curr_vec = signals.timecourse(curr_ROI).(activity_type);
         curr_vec(curr_vec < 0) = 0;
+        % now to downsample
+        if ds_val ~= 1
+            curr_vec = PPPack.hf.downsample_vector(curr_vec,ds_val,'mean');
+        end
         run_tc(curr_ROI,:) = curr_vec;
     end
     
     % build training and testing frames - train on first 75% and test on
     % last 25% - 2 will be test and 1 will be train
-    nframes_train = floor(0.75*length(signals.timecourse(1).dff));
-    curr_train_v_test_vector = 2*ones(size(signals.timecourse(1).dff));
+    nframes_train = floor(0.75*length(curr_vec));
+    curr_train_v_test_vector = 2*ones(size(curr_vec));
     curr_train_v_test_vector(1:nframes_train) = 1;
     all_train_v_test = [all_train_v_test curr_train_v_test_vector];
     

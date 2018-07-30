@@ -1,7 +1,11 @@
-function all_task_variables = get_task_variables_for_GLM(Dirs, variables_to_consider)
+function all_task_variables = get_task_variables_for_GLM(Dirs, variables_to_consider, ds_val)
 % for all variables in variables to consider create a vector that
 % represents that task variable for the future model and build a matrix of
 % these variables
+
+if nargin < 3
+    ds_val = 1;
+end
 
 
 % iterate through each run and get all of the variables we care about
@@ -12,8 +16,8 @@ for curr_run = 1:nRuns
     % this is the directory information for a specific run
     curr_dir = Dirs.runs{curr_run};
     % load in the frame_2p_metadata and the TrialVariable
-    load(strrep(curr_dir.sbx,'.sbx','.f2p'),'-mat')
-    load(strrep(curr_dir.sbx,'.sbx','.TrialVar'),'-mat')
+    load(strrep(curr_dir.sbx,'.sbx','.f2p'),'-mat');
+    load(strrep(curr_dir.sbx,'.sbx','.TrialVar'),'-mat');
     
 
     % iterate through each variable and load that vector
@@ -22,10 +26,10 @@ for curr_run = 1:nRuns
         curr_task_variable = variables_to_consider{i};
         
         % get the appropriate task variable
-        output = process_task_variables(frame_2p_metadata,Stim_Master,Column_Order,curr_task_variable,curr_dir);
+        output = process_task_variables(frame_2p_metadata,Stim_Master,Column_Order,curr_task_variable,curr_dir,ds_val);
         
         % make sure it is the proper length
-        output = output(1:length(frame_2p_metadata.ensuretrigsperframe));
+        output = output(1:floor(length(frame_2p_metadata.ensuretrigsperframe)/ds_val));
         
         % make sure it is proper orientation for concatenations
         if size(output,1) > 1
@@ -42,30 +46,49 @@ end
 end
 
 
-function output = process_task_variables(frame_2p_metadata,Stim_Master,Column_Order,curr_task_variable,curr_dir)
+function output = process_task_variables(frame_2p_metadata,...
+    Stim_Master,Column_Order,curr_task_variable,curr_dir,ds_val)
 
 % if lick bout onset then only take the first lick in a lickbout
 if strcmp('lick bout onset',curr_task_variable) | strcmp('all other licking',curr_task_variable)
     licking = frame_2p_metadata.lickingtrigsperframe;
     output = process_licking(licking,curr_task_variable,frame_2p_metadata);
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'max');
+    end
 elseif strcmp('quinine',curr_task_variable)
     output = frame_2p_metadata.quininetrigsperframe;
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'sum');
+    end
 elseif strcmp('ensure',curr_task_variable)
     output = frame_2p_metadata.ensuretrigsperframe;
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'sum');
+    end
 elseif strcmp('xyshift',curr_task_variable)
     % load in the .align file
-    TMP = load(strrep(curr_dir.sbx,'.sbx','.align'),'-mat')
+    TMP = load(strrep(curr_dir.sbx,'.sbx','.align'),'-mat');
     xshift = TMP.StackReg(:,4);
     yshift = TMP.StackReg(:,3);
     output = sqrt(xshift.^2 + yshift.^2); % this is the brain movement variable
     output = diff([output(1); output]); % want to look at changes so do diff
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'mean');
+    end
 elseif ~isempty(strfind(curr_task_variable,'onsets')) || ...
         ~isempty(strfind(curr_task_variable,'entire')) || ...
         ~isempty(strfind(curr_task_variable,'offsets')) % for all visual stimulus stuff - giant function below
     output = build_visual_task_variable(frame_2p_metadata,Stim_Master,Column_Order,curr_task_variable);
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'max');
+    end
 elseif strcmp('running',curr_task_variable)   
     [mouse,curr_date,run] = PPPack.hf.get_mouse_day_run_info_from_dirs(curr_dir);
     output = PPPack.hf.sbxSpeed(mouse,curr_date,run);
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'mean');
+    end
 end
 
 end
