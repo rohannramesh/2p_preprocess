@@ -43,6 +43,8 @@ function base = get_anastasia_pathname(curr_username)
         curr_name = 'kelly\';
     elseif strcmpi(curr_username,'cburgess')
         curr_name = 'kelly\';
+    elseif strcmpi(curr_username,'asugden')
+        curr_name = 'kelly\';
     end
     base = [anastasia_base curr_name];
 end

@@ -1,0 +1,32 @@
+GLM variables to use
+
+Variable name:Pre_seconds,Post_seconds
+
+lick bout onset:1,2
+all other licking:0,0
+quinine:0,2
+ensure:0,2
+xshift:0,0
+yshift:0,0
+FC entire stim correct:0,0
+FC entire stim incorrect:0,0
+QC entire stim correct:0,0
+QC entire stim incorrect:0,0
+NC entire stim correct:0,0
+NC entire stim incorrect:0,0
+FC offsets:0,4
+QC offsets:0,4
+NC offsets:0,4
+running:0,0
+
+*EOB
+GLM possible variables
+FC entire stim correct:0,1
+FC onsets correct:0,3
+FC onsets:0,3
+QC onsets:0,3
+NC onsets:0,3
+FC offsets:0,3
+QC offsets:0,3
+NC offsets:0,3
+xyshift:0,0

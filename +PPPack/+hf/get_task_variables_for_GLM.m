@@ -76,6 +76,24 @@ elseif strcmp('xyshift',curr_task_variable)
     if ds_val ~= 1
         output = PPPack.hf.downsample_vector(output,ds_val,'mean');
     end
+elseif strcmp('yshift',curr_task_variable)
+    % load in the .align file
+    TMP = load(strrep(curr_dir.sbx,'.sbx','.align'),'-mat');
+    yshift = TMP.StackReg(:,3);
+    output = yshift; % this is the brain movement variable
+    output = diff([output(1); output]); % want to look at changes so do diff
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'mean');
+    end
+elseif strcmp('xshift',curr_task_variable)
+    % load in the .align file
+    TMP = load(strrep(curr_dir.sbx,'.sbx','.align'),'-mat');
+    xshift = TMP.StackReg(:,4);
+    output = xshift; % this is the brain movement variable
+    output = diff([output(1); output]); % want to look at changes so do diff
+    if ds_val ~= 1
+        output = PPPack.hf.downsample_vector(output,ds_val,'mean');
+    end
 elseif ~isempty(strfind(curr_task_variable,'onsets')) || ...
         ~isempty(strfind(curr_task_variable,'entire')) || ...
         ~isempty(strfind(curr_task_variable,'offsets')) % for all visual stimulus stuff - giant function below

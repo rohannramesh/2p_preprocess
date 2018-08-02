@@ -1,4 +1,4 @@
-function [All_Basis_Sets,convolution_gauss,Beta_coeff_idx] = get_basis_set_for_GLM(Dirs, variables_to_consider, task_variables,...
+function [All_Basis_Sets,convolution_gauss] = get_basis_set_for_GLM(Dirs, variables_to_consider, task_variables,...
     ds_val, prepost_time_windows_taskvar)
 
 % gaussian to convolved for each basis set
@@ -18,7 +18,7 @@ end
 
 % iterate through each run and get all of the variables we care about
 All_Basis_Sets = [];
-Beta_coeff_idx.values = [];
+Beta_coeff_idx = [];
 for i = 1:length(variables_to_consider)
     % this is the current task variable and the vector associated with it
     curr_task_variable = variables_to_consider{i};
@@ -30,8 +30,7 @@ for i = 1:length(variables_to_consider)
     
     % concatenate
     All_Basis_Sets = [All_Basis_Sets; Curr_Basis_Set'];
-    Beta_coeff_idx.values = [Beta_coeff_idx.values; i*ones(size(Curr_Basis_Set',1),1)];
-    Beta_coeff_idx.labels{i} = curr_task_variable;
+    Beta_coeff_idx = [Beta_coeff_idx; i*ones(size(Curr_Basis_Set',1),1)];
     
 end
 

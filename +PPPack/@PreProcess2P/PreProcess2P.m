@@ -39,7 +39,7 @@ classdef PreProcess2P < handle
         sbxExtractTraces(obj)
         ROI_selection_CNN_NMF(obj)
         ROI_selection_CNN_PCAICA(obj)
-        run_glm(obj,signals_type,activity_type)
+        run_glm(obj,signals_type,activity_type,GLM_parameter_file)
         save2PPPObj(obj)
         update_log_file(obj,tag)
         function obj = PreProcess2P(varargin)

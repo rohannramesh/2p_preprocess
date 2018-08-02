@@ -221,12 +221,13 @@ myObj.sbxExtractTraces()
 %         }
 
 if strcmp(myObj.PreProcessingParameters.ROI_algorithm,'PCA/ICA')
-    signals_type = 'signalsica'
+    signals_type = 'signalsica';
 elseif strcmp(myObj.PreProcessingParameters.ROI_algorithm,'NMF')
-    signals_type = 'signalsnmf'
+    signals_type = 'signalsnmf';
 end
-activity_type = 'deconvolved'
-myObj.run_glm(signals_type,activity_type);
+activity_type = 'deconvolved';
+GLM_parameter_file = 'D:\Analysis_scripts\Dropbox\AndermannLab\users\ramesh\2p_preprocess\+PPPack\+hf\glm_parameters.txt';
+myObj.run_glm(signals_type,activity_type,GLM_parameter_file);
 
 
 
